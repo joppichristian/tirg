@@ -68,10 +68,10 @@ To run our training & testing:
 
 ```
 python main.py --dataset=css3d --dataset_path=./CSSDataset --num_iters=160000 \
-  --model=tirg --loss=soft_triplet --comment=css3d_tirg
+  --model=tirg --loss=soft_triplet --comment=css3d_tirg --loader_num_workers=0
 
 python main.py --dataset=css3d --dataset_path=./CSSDataset --num_iters=160000 \
-  --model=tirg_lastconv --loss=soft_triplet --comment=css3d_tirgconv
+  --model=tirg_lastconv --loss=soft_triplet --comment=css3d_tirgconv --loader_num_workers=0
 ```
 
 The first command apply TIRG to the fully connected layer and the second applies it to the last conv layer.
@@ -96,12 +96,12 @@ For training & testing:
 python main.py --dataset=mitstates --dataset_path=./mitstates \
   --num_iters=160000 --model=concat --loss=soft_triplet \
   --learning_rate_decay_frequency=50000 --num_iters=160000 --weight_decay=5e-5 \
-  --comment=mitstates_concat
+  --comment=mitstates_concat --loader_num_workers=0
 
 python main.py --dataset=mitstates --dataset_path=./mitstates \
   --num_iters=160000 --model=tirg --loss=soft_triplet \
   --learning_rate_decay_frequency=50000 --num_iters=160000 --weight_decay=5e-5 \
-  --comment=mitstates_tirg
+  --comment=mitstates_tirg --loader_num_workers=0
 ```
 
 ### Fashion200k dataset
