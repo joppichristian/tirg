@@ -52,21 +52,19 @@ def pairwise_distances(x, y=None):
 
 
 class MyTripletLossFunc(torch.autograd.Function):
+  
 
-  def __init__(self, triplets):
-    super(MyTripletLossFunc, self).__init__()
+  @staticmethod
+  def forward(self, features, triplets):
+    self.save_for_backward(features)
     self.triplets = triplets
     self.triplet_count = len(triplets)
-
-  def forward(self, features):
-    self.save_for_backward(features)
-
     self.distances = pairwise_distances(features).cpu().numpy()
 
     loss = 0.0
     triplet_count = 0.0
     correct_count = 0.0
-    for i, j, k in self.triplets:
+    for i, j, k in triplets:
       w = 1.0
       triplet_count += w
       loss += w * np.log(1 +
@@ -99,7 +97,7 @@ class MyTripletLossFunc(torch.autograd.Function):
     for i in range(features_np.shape[0]):
       grad_features[i, :] = torch.from_numpy(grad_features_np[i, :])
     grad_features *= float(grad_output.data[0])
-    return grad_features
+    return grad_features, None
 
 
 class TripletLoss(torch.nn.Module):
@@ -111,7 +109,7 @@ class TripletLoss(torch.nn.Module):
   def forward(self, x, triplets):
     if self.pre_layer is not None:
       x = self.pre_layer(x)
-    loss = MyTripletLossFunc(triplets)(x)
+    loss = MyTripletLossFunc.apply(x, triplets)
     return loss
 
 
