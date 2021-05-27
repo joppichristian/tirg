@@ -1,5 +1,8 @@
 # Composing Text and Image for Image Retrieval
 
+### Edited by Christian Joppi for compatibility with Python3 and recent PyTorch versions.
+
+
 This is the code for the paper:
 
 **<a href="https://arxiv.org/abs/1812.07119">Composing Text and Image for Image Retrieval - An Empirical Odyssey
