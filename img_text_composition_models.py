@@ -69,7 +69,7 @@ class ImgTextCompositionBase(torch.nn.Module):
 
   def compute_soft_triplet_loss_(self, mod_img1, img2):
     triplets = []
-    labels = range(mod_img1.shape[0]) + range(img2.shape[0])
+    labels = list(range(mod_img1.shape[0])) + list(range(img2.shape[0]))
     for i in range(len(labels)):
       triplets_i = []
       for j in range(len(labels)):
