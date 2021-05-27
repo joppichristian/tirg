@@ -71,7 +71,7 @@ class CSSDataset(BaseDataset):
     self.img_path = path + '/images/'
     self.transform = transform
     self.split = split
-    self.data = np.load(path + '/css_toy_dataset_novel2_small.dup.npy').item()
+    self.data = np.load(path + '/css_toy_dataset_novel2_small.dup.npy', allow_pickle = True, encoding='latin1').item()
     self.mods = self.data[self.split]['mods']
     self.imgs = []
     for objects in self.data[self.split]['objects_img']:
@@ -483,7 +483,7 @@ class MITStates(BaseDataset):
       self.caption2imgids[cap].append(i)
       if adj not in self.noun2adjs[noun]:
         self.noun2adjs[noun].append(adj)
-    for noun, adjs in self.noun2adjs.iteritems():
+    for noun, adjs in self.noun2adjs.items():
       assert len(adjs) >= 2
 
   def caption_index_sample_(self, idx):
@@ -525,3 +525,4 @@ class MITStates(BaseDataset):
     if self.transform:
       img = self.transform(img)
     return img
+
