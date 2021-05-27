@@ -120,11 +120,11 @@ Run training & testing:
 ```
 python main.py --dataset=fashion200k --dataset_path=./Fashion200k \
   --num_iters=160000 --model=concat --loss=batch_based_classification \
-  --learning_rate_decay_frequency=50000 --comment=f200k_concat
+  --learning_rate_decay_frequency=50000 --comment=f200k_concat --loader_num_workers=0
 
 python main.py --dataset=fashion200k --dataset_path=./Fashion200k \
   --num_iters=160000 --model=tirg --loss=batch_based_classification \
-  --learning_rate_decay_frequency=50000 --comment=f200k_tirg
+  --learning_rate_decay_frequency=50000 --comment=f200k_tirg --loader_num_workers=0
 ```
 
 
