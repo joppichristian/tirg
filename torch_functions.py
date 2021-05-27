@@ -74,7 +74,7 @@ class MyTripletLossFunc(torch.autograd.Function):
 
     loss /= triplet_count
     return torch.FloatTensor((loss,))
-
+  @staticmethod
   def backward(self, grad_output):
     features, = self.saved_tensors
     features_np = features.cpu().numpy()
